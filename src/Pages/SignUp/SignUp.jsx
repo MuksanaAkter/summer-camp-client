@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-    const { register, handleSubmit,reset, formState: { errors } } = useForm();
+    const { register, handleSubmit,reset,watch, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     // const navigate = useNavigate();
 
@@ -69,28 +69,28 @@ const SignUp = () => {
                         <h1 className="text-5xl font-bold text-white text-center">Sign up now!</h1>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Name</span>
+                                    <span className="label-text text-lg text-white">Name</span>
                                 </label>
                                 <input type="text"  {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
-                                {errors.name && <span className="text-red-600">Name is required</span>}
+                                {errors.name && <span className="text-yellow-500">Name is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Photo URL</span>
+                                    <span className="label-text text-lg text-white">Photo URL</span>
                                 </label>
                                 <input type="text"  {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
-                                {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
+                                {errors.photoURL && <span className="text-yellow-500">Photo URL is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Email</span>
+                                    <span className="label-text text-lg text-white">Email</span>
                                 </label>
                                 <input type="email"  {...register("email", { required: true })} name="email" placeholder="Email" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Email is required</span>}
+                                {errors.email && <span className="text-yellow-500">Email is required</span>}
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Password</span>
+                                    <span className="label-text text-lg text-white">Password</span>
                                 </label>
                                 <input type="password"  {...register("password", {
                                     required: true,
@@ -98,20 +98,33 @@ const SignUp = () => {
                                     maxLength: 20,
                                     pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/
                                 })} placeholder="Password" className="input input-bordered" />
-                                {errors.password?.type === 'required' && <p className="text-red-600">Password is required</p>}
-                                {errors.password?.type === 'minLength' && <p className="text-red-600">Password must be 6 characters</p>}
-                                {errors.password?.type === 'maxLength' && <p className="text-red-600">Password must be less than 20 characters</p>}
-                                {errors.password?.type === 'pattern' && <p className="text-red-600">Password must have one Uppercase one lower case, one number and one special character.</p>}
+                                {errors.password?.type === 'required' && <p className="text-yellow-500">Password is required</p>}
+                                {errors.password?.type === 'minLength' && <p className="text-yellow-500">Password must be 6 characters</p>}
+                                {errors.password?.type === 'maxLength' && <p className="text-yellow-500">Password must be less than 20 characters</p>}
+                                {errors.password?.type === 'pattern' && <p className="text-yellow-500">Password must have one Uppercase one lower case, one number and one special character.</p>}
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover text-lg text-gray-300 underline">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Confirn Password</span>
+                                    <span className="label-text text-lg text-white">Confirn Password</span>
                                 </label>
-                                <input type="password" name="pass" placeholder="Confrim Password" className="input input-bordered" />
-                                {errors.email && <span className="text-red-600">Confrim Password is required</span>}
+                                <input
+                                    type="password"
+                                    {...register("confirmPassword", {
+                                        required: true,
+                                        validate: (value) => value === watch("password"),
+                                    })}
+                                    placeholder="confirm password"
+                                    className="input input-bordered"
+                                />
+                                {errors.confirmPassword?.type === 'required' && (
+                                    <p className="text-yellow-500">Confirm Password is required</p>
+                                )}
+                                {errors.confirmPassword?.type === 'validate' && (
+                                    <p className="text-yellow-500 font-bold text-base">Passwords do not match</p>
+                                )}
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn bg-black text-white border-0 hover:bg-yellow-600" type="submit" value="Sign Up" />

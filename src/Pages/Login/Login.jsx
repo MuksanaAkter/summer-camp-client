@@ -28,6 +28,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const auth = getAuth(app);
+  const GoogleProvider = new GoogleAuthProvider();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -55,7 +56,7 @@ const Login = () => {
 
   const handleGoogle = (event) => {
     event.preventDefault();
-    signInWithPopup(auth, GoogleAuthProvider)
+    signInWithPopup(auth, GoogleProvider)
       .then((result) => {
         const logUser = result.user;
         //console.log(logUser);
@@ -122,8 +123,8 @@ const Login = () => {
                     onChange={handlePasswordChange}
                     placeholder="Password"
                   />
-                  <span className="absolute inset-y-0 flex-row-reverse items-center" onClick={toggleShowPassword}>
-                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  <span className="my-1" onClick={toggleShowPassword}>
+                    {showPassword ? <FaEyeSlash className="" /> : <FaEye />}
                   </span>
                 </div>
               </div>

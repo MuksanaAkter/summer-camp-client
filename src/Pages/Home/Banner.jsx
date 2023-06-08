@@ -9,7 +9,7 @@ const Banner = () => {
                 <div>
                     
                     <img  className="h-full z-0" src="https://images.unsplash.com/photo-1621367507503-1b5816c754a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBhbmQlMjB3aGl0ZSUyMGd1aXRhcnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80" />
-                  
+                    <p className="legend ">Legend 1</p>
                    
                 </div>
                 <div>

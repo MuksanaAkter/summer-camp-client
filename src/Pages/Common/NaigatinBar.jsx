@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import logo from "../../../public/logo1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
-// import { Tooltip } from "react-tooltip";
+import { Tooltip } from "react-tooltip";
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -20,19 +20,18 @@ const NavigationBar = () => {
       </li>
       <li className="font-bold text-xl">
         {" "}
-        <Link to="/alltoys">Instructors</Link>{" "}
+        <Link to="/instructor">Instructors</Link>{" "}
       </li>
 
       <li className="font-bold text-xl">
-        <Link to="/blog">Classes</Link>
+        <Link to="/classes">Classes</Link>
       </li>
-      
     
         <li className="font-bold text-xl">
-        <Link to="/addtoy">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li className="font-bold text-xl">
-        <Link to="/mytoy">music</Link>
+        <Link to="/music">music</Link>
       </li>
             
         </>       
@@ -74,7 +73,7 @@ const NavigationBar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navItems}</ul>
         </div>
-        {/* {user && (
+        {user && (
                 // <Tooltip className=""  place="BottomRight" anchorSelect="#clickable">
                 //   <button className="bg-blue">{user.displayName}</button>
                 // </Tooltip>
@@ -83,10 +82,10 @@ const NavigationBar = () => {
                 </Tooltip>
                 
                 
-              )} */}
+              )}
 
         <div className="navbar-end">
-          {/* {user && (
+          {user && (
             <div style={{ width: "50px" }} className="me-2" id="clickable">
               {" "}
               <img
@@ -96,7 +95,7 @@ const NavigationBar = () => {
                 alt=""
               />
             </div>
-          )} */}
+          )}
 
           {user ? (
             <button

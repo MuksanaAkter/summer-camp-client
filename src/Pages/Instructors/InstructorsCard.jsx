@@ -1,6 +1,6 @@
 
 const InstructorsCard = ({Instructors}) => {
-    console.log(Instructors);
+    //console.log(Instructors);
     const {  image, name,email} = Instructors;
     return (
         <div className=" ">

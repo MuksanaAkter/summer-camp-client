@@ -1,8 +1,56 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+import { Navigate } from "react-router-dom";
 
 
 const ClassCard = ({classes}) => {
     //console.log(classes);
-    const {  image, name,available_seats,instructor, price} = classes;
+    const { _id, image, name,available_seats,instructor, price} = classes;
+    const {user} = useContext(AuthContext);
+
+    const handleAddToCart = myclass => {
+      console.log(myclass);
+      if(user && user.email){
+          const myclassItem = {menuItemId: _id, name,available_seats, instructor, image, price, email: user.email}
+          fetch('http://localhost:5000/enrolls', {
+              method: 'POST',
+              headers: {
+                  'content-type': 'application/json'
+              },
+              body: JSON.stringify(myclassItem)
+          })
+          .then(res => res.json())
+          .then(data => {
+              if(data.insertedId){
+                  // refetch(); // refetch cart to update the number of items in the cart
+                  Swal.fire({
+                      position: 'top-end',
+                      icon: 'success',
+                      title: 'Food added on the cart.',
+                      showConfirmButton: false,
+                      timer: 1500
+                    })
+              }
+          })
+      }
+      else{
+          Swal.fire({
+              title: 'Please login to order the food',
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Login now!'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Navigate('/login', {state: {from: location}})
+              }
+            })
+      }
+  }
+
+
     return (
         <div className=" ">
       
@@ -16,7 +64,7 @@ const ClassCard = ({classes}) => {
   <div className='d-flex align-items-enter'>
       </div>
   <div className="card-actions justify-end">  
-    
+    <button onClick={() => handleAddToCart(classes)} className="btn">Enroll Now</button>
   </div>
 </div>
 </div>

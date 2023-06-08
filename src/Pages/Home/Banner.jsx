@@ -4,7 +4,7 @@ import { Carousel } from "react-responsive-carousel";
 const Banner = () => {
   return (
     <div>
-      <Carousel className="max-w-screen-2xl mx-auto">
+      <Carousel className="max-w-screen-2xl mx-auto mt-10">
         <div>
           <img
             className="h-full"

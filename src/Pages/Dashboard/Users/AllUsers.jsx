@@ -1,15 +1,38 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUserShield } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
         const res = await fetch('http://localhost:5000/users')
         return res.json();
     })
+
+    const handleMakeAdmin = user =>{
+        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+            method: 'PATCH'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            if(data.modifiedCount){
+                refetch();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: `${user.name} is an Admin Now!`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
+        })
+    }
+    
+    const handleDelete = () => {
+
+    }
     return (
         <div>
-            uuuu
-            {users.length}
             <div className="w-full">
             <h3 className="text-3xl font-semibold my-4">Total Users: {users.length}</h3>
             <div className="overflow-x-auto">
@@ -32,11 +55,11 @@ const AllUsers = () => {
                                 <td>{user.email}</td>
                                 <td>{ user.role === 'admin' ? 'admin' :
                                     <button 
-                                    // onClick={() => handleMakeAdmin(user)}
+                                    onClick={() => handleMakeAdmin(user)}
                                      className="btn btn-ghost bg-orange-600  text-white"><FaUserShield></FaUserShield></button> 
                                     }</td>
                                 <td><button 
-                                // onClick={() => handleDelete(user)} 
+                                onClick={() => handleDelete(user)} 
                                 className="btn btn-ghost bg-red-600  text-white"><FaTrashAlt></FaTrashAlt></button></td>
                             </tr>)
                         }

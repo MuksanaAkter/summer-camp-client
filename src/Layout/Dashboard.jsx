@@ -10,12 +10,13 @@ import {
 } from "react-icons/fa";
 
 import useEnroll from "../hooks/useEnroll";
+import useAdmin from "../hooks/UseAdmin";
 
 const Dashboard = () => {
   const [enrolls] = useEnroll();
   //console.log(enrolls);
-  const isAdmin = true;
-  //   const [isAdmin] = useAdmin();
+  //const isAdmin = true;
+  const [isAdmin] = useAdmin();
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="drawer lg:drawer-open ">
@@ -40,9 +41,9 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/reservations">
+                  <NavLink to="/dashboard/addClass">
                     {" "}
-                    <FaUtensils></FaUtensils> Add Items
+                    <FaUtensils></FaUtensils> Add Class
                   </NavLink>
                 </li>
                 <li>

@@ -31,7 +31,7 @@ const NavigationBar = () => {
       </li>
     
         <li className="font-bold text-xl">
-        <Link to="/dashboard/myclass">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>
       <li className="font-bold text-xl">
         <Link to="/music">class <span>{enrolls?.length|| 0}</span></Link>

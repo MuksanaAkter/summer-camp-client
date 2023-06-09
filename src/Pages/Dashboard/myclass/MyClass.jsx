@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 
 const MyClass = () => {
     const [enroll, refetch ] = useEnroll();
-    console.log(enroll);
+    //console.log(enroll);
     // how does reduce work!!!
     const total = enroll.reduce((sum, item) => item.price + sum, 0);
 

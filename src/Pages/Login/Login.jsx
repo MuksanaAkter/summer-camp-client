@@ -38,20 +38,21 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
-    signIn(email, password).then((result) => {
-      const user = result.user;
-      console.log(user);
-      Swal.fire({
-        title: "User Login Successful.",
-        showClass: {
-          popup: "animate__animated animate__fadeInDown",
-        },
-        hideClass: {
-          popup: "animate__animated animate__fadeOutUp",
-        },
-      });
-      navigate(from, { replace: true });
-    });
+    signIn(email, password)
+        .then(result => {
+            const user = result.user;
+            console.log(user);
+            Swal.fire({
+                title: 'User Login Successful.',
+                showClass: {
+                    popup: 'animate__animated animate__fadeInDown'
+                },
+                hideClass: {
+                    popup: 'animate__animated animate__fadeOutUp'
+                }
+            });
+            navigate(from, { replace: true });
+        })
   };
 
   const handleGoogle = (event) => {
@@ -75,15 +76,6 @@ const Login = () => {
     })
   };
 
-  // const handleValidateCaptcha = (e) => {
-  //     const user_captcha_value = e.target.value;
-  //     if (validateCaptcha(user_captcha_value)) {
-  //         setDisabled(false);
-  //     }
-  //     else {
-  //         setDisabled(true)
-  //     }
-  // }
   const backgroundImage =
     "https://images.pexels.com/photos/290660/pexels-photo-290660.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
   return (
@@ -128,6 +120,7 @@ const Login = () => {
                     type={showPassword ? "text" : "password"}
                     value={password}
                     onChange={handlePasswordChange}
+                    name="password"
                     placeholder="Password"
                   />
                   <span className="my-1" onClick={toggleShowPassword}>

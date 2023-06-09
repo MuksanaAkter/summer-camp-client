@@ -6,12 +6,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 import { AuthContext } from "../../Provider/AuthProvider";
-import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
-import { app } from "../../firebase/firebase.config";
+// import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+// import { app } from "../../firebase/firebase.config";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const [user, setUser] = useState(null);
+  // const [user, setUser] = useState(null);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -23,12 +23,12 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
   // const [user, setUser] = useState(null);
-  console.log(user);
-  const { signIn } = useContext(AuthContext);
+  //console.log(user);
+  const { signIn , googleSignIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const auth = getAuth(app);
-  const GoogleProvider = new GoogleAuthProvider();
+  // const auth = getAuth(app);
+  // const GoogleProvider = new GoogleAuthProvider();
 
   const from = location.state?.from?.pathname || "/";
 
@@ -56,16 +56,23 @@ const Login = () => {
 
   const handleGoogle = (event) => {
     event.preventDefault();
-    signInWithPopup(auth, GoogleProvider)
-      .then((result) => {
-        const logUser = result.user;
-        //console.log(logUser);
-        setUser(logUser);
-        navigate(from, { replace: true });
-      })
-      .catch((error) => {
-        console.log("error", error.message);
-      });
+    googleSignIn()
+    .then(result => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(saveUser)
+        })
+            .then(res => res.json())
+            .then(() => {
+                navigate(from, { replace: true });
+            })
+    })
   };
 
   // const handleValidateCaptcha = (e) => {

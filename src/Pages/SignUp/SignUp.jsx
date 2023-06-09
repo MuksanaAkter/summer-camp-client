@@ -2,7 +2,7 @@ import { useContext } from "react";
 
 import { useForm } from "react-hook-form";
 
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
 // import { updateProfile} from "firebase/auth";
 import Swal from "sweetalert2";
@@ -10,9 +10,9 @@ import Swal from "sweetalert2";
 
 const SignUp = () => {
 
-    const { register, handleSubmit,reset,watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const onSubmit = data => {
 
@@ -21,7 +21,6 @@ const SignUp = () => {
 
                 const loggedUser = result.user;
                 console.log(loggedUser);
-                
 
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
@@ -44,7 +43,7 @@ const SignUp = () => {
                                         showConfirmButton: false,
                                         timer: 1500
                                     });
-                                    Navigate('/');
+                                    navigate('/');
                                 }
                             })
 

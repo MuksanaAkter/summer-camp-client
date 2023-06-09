@@ -6,7 +6,7 @@ const InstructorsCard = ({Instructors}) => {
         <div className=" ">
       
         <div className="card card-side bg-sky-100 shadow-xl">
-<figure><img className="h-40 w-30 m-3" src={image} alt=""/></figure>
+<figure><img className="w-60 h-40 m-3" src={image} alt=""/></figure>
 <div className="card-body">
  <h2 className="card-title mt-2"><span className="text-pink-600">Toy Name:</span> {name}</h2>
  <h2 className="card-title mt-2"><span className="text-pink-600">Toy Name:</span> {email}</h2>

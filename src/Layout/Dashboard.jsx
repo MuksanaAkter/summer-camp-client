@@ -111,8 +111,8 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/mycart">
-                    <FaShoppingCart></FaShoppingCart> My Cart
+                  <NavLink to="/dashboard/myclass">
+                    <FaShoppingCart></FaShoppingCart> My Selected class
                     <span className="badge inl badge-secondary">
                       +{enrolls?.length || 0}
                     </span>

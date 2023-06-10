@@ -59,7 +59,7 @@ const ClassCard = ({ classes }) => {
 
   return (
     <div className=" ">
-      <div className="card card-side bg-white shadow-xl">
+      <div className={`card card-side ${ available_seats === 0 ? 'bg-red-500' : 'bg-white' } shadow-xl`}>
         <figure>
           <img className=" h-40  m-3" src={image} alt="" />
         </figure>
@@ -78,7 +78,7 @@ const ClassCard = ({ classes }) => {
           </h2>
           <div className="d-flex align-items-enter"></div>
           <div className="card-actions justify-end">
-            <button onClick={() => handleAddToCart(classes)} className="btn">
+            <button disabled={available_seats === 0} onClick={() => handleAddToCart(classes)} className="btn">
               Enroll Now
             </button>
           </div>

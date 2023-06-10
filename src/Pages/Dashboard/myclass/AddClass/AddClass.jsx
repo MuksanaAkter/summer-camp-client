@@ -1,50 +1,78 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../../../hooks/useAxiosSecure ";
+import { AuthContext } from "../../../../Provider/AuthProvider";
+// import useAxiosSecure from "../../../../hooks/useAxiosSecure ";
 
-const img_hosting_token = import.meta.env.VITE_Image_token;
+// const img_hosting_token = import.meta.env.VITE_Image_token;
 
 const AddClass = () => {
-    const { register, handleSubmit, reset } = useForm();
-    const [axiosSecure] = useAxiosSecure();
-    const img_hosting_url = `"https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+    const { user } = useContext(AuthContext);
 
-    const onSubmit = data => {
-        console.log(data);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+      } = useForm();
+    // const [axiosSecure] = useAxiosSecure();
+    // const img_hosting_url = `"https://api.imgbb.com/1/upload?key=${img_hosting_token}`
+
+    // const onSubmit = data => {
+    //     console.log(data);
         
-        const formData = new FormData();
-        formData.append('image', data.image[0])
+    //     const formData = new FormData();
+    //     formData.append('image', data.image[0])
 
-        fetch(img_hosting_url, {
-            method: 'POST',
-            body: formData
+    //     fetch(img_hosting_url, {
+    //         method: 'POST',
+    //         body: formData,
+    //         mode: 'no-cors'
+    //     })
+    //     .then(res => res.json())
+    //     .then(imgResponse => {
+    //         if(imgResponse.success){
+    //             const imgURL = imgResponse.data.display_url;
+    //             const {className,instructorName,instructorEmail, price, Status, seats} = data;
+    //             const newItem = {className,instructorName,instructorEmail, price: parseFloat(price), Status, seats, image:imgURL}
+    //             console.log(newItem)
+    //             axiosSecure.post('/classes', newItem)
+    //             .then(data => {
+    //                 console.log('after posting new menu item', data.data)
+    //                 if(data.data.insertedId){
+    //                     reset();
+    //                     Swal.fire({
+    //                         position: 'top-end',
+    //                         icon: 'success',
+    //                         title: 'Item added successfully',
+    //                         showConfirmButton: false,
+    //                         timer: 1500
+    //                       })
+    //                 }
+    //             })
+    //         }
+    //     })
+
+    // };
+    const onSubmit = (data) => {
+        //console.log(data);
+        fetch("http://localhost:5000/addclass", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
         })
-        .then(res => res.json())
-        .then(imgResponse => {
-            if(imgResponse.success){
-                const imgURL = imgResponse.data.display_url;
-                const {className,instructorName,instructorEmail, price, Status, seats} = data;
-                const newItem = {className,instructorName,instructorEmail, price: parseFloat(price), Status, seats, image:imgURL}
-                console.log(newItem)
-                axiosSecure.post('/classes', newItem)
-                .then(data => {
-                    console.log('after posting new menu item', data.data)
-                    if(data.data.insertedId){
-                        reset();
-                        Swal.fire({
-                            position: 'top-end',
-                            icon: 'success',
-                            title: 'Item added successfully',
-                            showConfirmButton: false,
-                            timer: 1500
-                          })
-                    }
-                })
-            }
-        })
-
-    };
-
+          .then((res) => res.json())
+          .then((result) => {
+            console.log(result);
+          });
+          Swal.fire({
+            icon: 'success',
+            title: 'Success!',
+            text: 'Added Toy Successfully',
+            
+           
+          })
+        //console.log(data);
+      };
 
     return (
         <div className="w-full ">
@@ -53,6 +81,7 @@ const AddClass = () => {
             <form 
              onSubmit={handleSubmit(onSubmit)}
             >
+                {errors.exampleRequired && <span>This field is required</span>}
                 <div className="form-control w-full mb-4">
                     <label className="label">
                         <span className="label-text font-semibold">Class Name*</span>
@@ -61,11 +90,24 @@ const AddClass = () => {
                         {...register("className", { required: true, maxLength: 120 })}
                         className="input input-bordered w-full " />
                 </div>
+                <div>
+            <label className="label">
+              <span className="label-text text-xl font-semibold "> class Photo</span>
+            </label>
+            <input
+            required
+              className=" shadow-lg text-input p-5 w-full "
+              {...register("image")}
+              placeholder="image link"
+              type="url"
+        
+            />
+          </div>
                 <div className="form-control w-full mb-4">
                     <label className="label">
                         <span className="label-text font-semibold">Instructor Name*</span>
                     </label>
-                    <input type="text" placeholder="Instructor Name"
+                    <input type="text" placeholder="Instructor Name"  value={user?.displayName}
                         {...register("instructorName", { required: true, maxLength: 120 })}
                         className="input input-bordered w-full " />
                 </div>
@@ -73,7 +115,7 @@ const AddClass = () => {
                     <label className="label">
                         <span className="label-text font-semibold">Instructor Email*</span>
                     </label>
-                    <input type="text" placeholder="Instructor Email"
+                    <input type="text" placeholder="Instructor Email"  value={user?.email}
                         {...register("instructorEmail", { required: true, maxLength: 120 })}
                         className="input input-bordered w-full " />
                 </div>
@@ -104,12 +146,12 @@ const AddClass = () => {
                         <input type="number" {...register("seats", { required: true })} placeholder="Type here" className="input input-bordered w-full " />
                     </div>
                
-                <div className="form-control w-full my-4">
+                {/* <div className="form-control w-full my-4">
                     <label className="label">
                         <span className="label-text">Class Image*</span>
                     </label>
                     <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full " />
-                </div>
+                </div> */}
                 <input className="btn btn-sm mt-4" type="submit" value="Add Item" />
             </form>
         </div>

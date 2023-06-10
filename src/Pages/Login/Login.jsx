@@ -14,6 +14,7 @@ const Login = () => {
   // const [user, setUser] = useState(null);
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState("");
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
@@ -53,6 +54,10 @@ const Login = () => {
             });
             navigate(from, { replace: true });
         })
+        .catch((error) => {
+          console.log(error);
+          setError(error.message);
+        });
   };
 
   const handleGoogle = (event) => {
@@ -126,6 +131,7 @@ const Login = () => {
                   <span className="my-1" onClick={toggleShowPassword}>
                     {showPassword ? <FaEyeSlash className="" /> : <FaEye />}
                   </span>
+                  <h5 className="text-red-600 font-bold my-2">{error}</h5>
                 </div>
               </div>
               <div className="form-control mt-6 bg-black text-white rounded-xl hover:bg-cyan-800">

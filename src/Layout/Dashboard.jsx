@@ -11,12 +11,14 @@ import {
 
 import useEnroll from "../hooks/useEnroll";
 import useAdmin from "../hooks/UseAdmin";
+import useInstructor from "../hooks/UseInstructor";
 
 const Dashboard = () => {
   const [enrolls] = useEnroll();
   //console.log(enrolls);
   //const isAdmin = true;
   const [isAdmin] = useAdmin();
+  const [isinstructor] = useInstructor();
   return (
     <div className="max-w-screen-2xl mx-auto">
       <div className="drawer lg:drawer-open ">
@@ -62,6 +64,35 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
               </>
+            ) : isinstructor ? (
+              <>
+              <li>
+                <NavLink to="/dashboard/home">
+                  <FaHome></FaHome> Insructor Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/addClass">
+                  {" "}
+                  <FaUtensils></FaUtensils> Add Class
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <FaWallet></FaWallet> Manage Items
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/history">
+                  <FaBook></FaBook> Manage Bookings
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/dashboard/allusers">
+                  <FaUsers></FaUsers> All Users
+                </NavLink>
+              </li>
+            </>
             ) : (
               <>
                 <li>
@@ -89,7 +120,7 @@ const Dashboard = () => {
                 </li>
               </>
             )}
-            
+
             <div className="divider"></div>
             <li>
               <NavLink to="/">

@@ -21,7 +21,7 @@ const ClassCard = ({ classes }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:5000/enrolls", {
+      fetch("http://localhost:4000/enrolls", {
         method: "POST",
         headers: {
           "content-type": "application/json",

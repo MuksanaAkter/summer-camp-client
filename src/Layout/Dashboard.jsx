@@ -12,7 +12,7 @@ import {
 import useEnroll from "../hooks/useEnroll";
 import useAdmin from "../hooks/UseAdmin";
 import useInstructor from "../hooks/UseInstructor";
-
+import logo from "../assets/logo1.png";
 const Dashboard = () => {
   const [enrolls] = useEnroll();
   //console.log(enrolls);
@@ -20,7 +20,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isinstructor] = useInstructor();
   return (
-    <div className="max-w-screen-2xl mx-auto">
+    <div className="max-w-screen-2xl mx-auto bg-black bg-opacity-40 text-white text-xl font-semibold">
       <div className="drawer lg:drawer-open ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
@@ -32,13 +32,17 @@ const Dashboard = () => {
           </label>
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side bg-[#D1A054]">
+        <div className="drawer-side bg-black bg-opacity-80">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80">
+          <img className=" rounded-lg p-3" src={logo} alt="" />
+          <h1 className="md:text-3xl text-xl text-center" style={{ fontFamily: "Lobster, cursive" }}>
+            Melody<span className="text-yellow-700">MAster</span>
+            </h1>
             {isAdmin ? (
               <>
-                <li>
-                  <NavLink to="/dashboard/home">
+                <li className="text-2xl">
+                  <NavLink className="text-2xl" to="/dashboard">
                     <FaHome></FaHome> Admin Home
                   </NavLink>
                 </li>
@@ -49,7 +53,7 @@ const Dashboard = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <NavLink to="/dashboard/history">
+                  <NavLink to="/dashboard/manageClass">
                     <FaWallet></FaWallet> Manage Items
                   </NavLink>
                 </li>
@@ -66,7 +70,7 @@ const Dashboard = () => {
               </>
             ) : isinstructor ? (
               <>
-              <li>
+              <li className="text-xl">
                 <NavLink to="/dashboard/home">
                   <FaHome></FaHome> Insructor Home
                 </NavLink>
@@ -79,7 +83,7 @@ const Dashboard = () => {
               </li>
               <li>
                 <NavLink to="/dashboard/history">
-                  <FaWallet></FaWallet> Manage Items
+                  <FaWallet></FaWallet> MY classes
                 </NavLink>
               </li>
               <li>
@@ -102,7 +106,7 @@ const Dashboard = () => {
                 </li>
                 <li>
                   <NavLink to="/dashboard/reservations">
-                    <FaCalendarAlt></FaCalendarAlt> Reservations
+                    <FaCalendarAlt></FaCalendarAlt> My enrolled classes
                   </NavLink>
                 </li>
                 <li>
@@ -130,9 +134,9 @@ const Dashboard = () => {
             <li>
               <NavLink to="/menu"> Our Menu</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/order/salad">Order Food</NavLink>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

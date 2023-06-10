@@ -4,12 +4,12 @@ import Swal from "sweetalert2";
 
 const AllUsers = () => {
     const { data: users = [], refetch } = useQuery(['users'], async () => {
-        const res = await fetch('http://localhost:5000/users')
+        const res = await fetch('http://localhost:4000/users')
         return res.json();
     })
 
     const handleMakeAdmin = user =>{
-        fetch(`http://localhost:5000/users/admin/${user._id}`, {
+        fetch(`http://localhost:4000/users/admin/${user._id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())
@@ -28,7 +28,7 @@ const AllUsers = () => {
         })
     }
     const handleMakeinstructor = user =>{
-        fetch(`http://localhost:5000/users/instructor/${user._id}`, {
+        fetch(`http://localhost:4000/users/instructor/${user._id}`, {
             method: 'PATCH'
         })
         .then(res => res.json())

@@ -67,7 +67,7 @@ const Login = () => {
         const loggedInUser = result.user;
         console.log(loggedInUser);
         const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
-        fetch('http://localhost:5000/users', {
+        fetch('http://localhost:4000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

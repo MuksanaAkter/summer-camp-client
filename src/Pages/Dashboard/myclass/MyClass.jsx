@@ -2,6 +2,7 @@
 import { FaTrashAlt } from "react-icons/fa";
 import useEnroll from "../../../hooks/useEnroll";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyClass = () => {
     const [enroll, refetch ] = useEnroll();
@@ -20,7 +21,7 @@ const MyClass = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/enrolls/${item._id}`, {
+                fetch(`http://localhost:4000/enrolls/${item._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -47,7 +48,9 @@ const MyClass = () => {
             <div className="uppercase font-semibold h-[60px] flex justify-evenly items-center mb-6">
                 <h3 className="text-3xl">Total Items: {enroll.length}</h3>
                 <h3 className="text-3xl">Total Price: ${total}</h3>
-                <button className="btn btn-warning btn-sm">PAY</button>
+                <Link to="/dashboard/payment">
+                    <button className="btn btn-warning btn-sm">PAY</button>
+                </Link>
             </div>
             <div className="overflow-x-auto w-full">
                 <table className="table w-full">

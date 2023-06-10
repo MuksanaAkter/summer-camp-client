@@ -1,5 +1,5 @@
 import { FaFacebook,FaInstagramSquare,FaTwitter,FaYoutube ,FaAddressBook, FaPhone, FaVoicemail } from "react-icons/fa";
-import logo from "../../../public/logo1.png";
+import logo from "../../assets/logo1.png";
 const Footer = () => {
   return (
     <div className="bg-black opacity-90 text-white">

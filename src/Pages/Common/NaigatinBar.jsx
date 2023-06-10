@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../../public/logo1.png";
+import logo from "../../assets/logo1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Tooltip } from "react-tooltip";

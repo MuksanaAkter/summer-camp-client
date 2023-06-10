@@ -10,7 +10,7 @@ const Class = () => {
     // const [toys, settoy] = useState([])
     
     useEffect(() => {
-      fetch("http://localhost:5000/classes")
+      fetch("http://localhost:4000/classes")
         .then((res) => res.json())
         .then((result) => {
           setclass(result);

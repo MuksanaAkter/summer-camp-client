@@ -10,7 +10,7 @@ const useEnroll = () => {
     const { refetch, data: enrolls = [] } = useQuery({
         queryKey: ['carts', user?.email],
            queryFn: async () => {
-            const res = await fetch(`http://localhost:4000/enrolls?email=${user?.email}`, { headers: {
+            const res = await fetch(`https://musical-instrument-server.vercel.app/enrolls?email=${user?.email}`, { headers: {
                 authorization: `bearer ${token}`
             }})
             

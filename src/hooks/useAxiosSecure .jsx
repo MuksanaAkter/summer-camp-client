@@ -9,7 +9,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate(); 
 
   const axiosSecure = axios.create({
-    baseURL: 'http://localhost:4000', 
+    baseURL: 'https://musical-instrument-server.vercel.app/', 
   });
 
   useEffect(() => {

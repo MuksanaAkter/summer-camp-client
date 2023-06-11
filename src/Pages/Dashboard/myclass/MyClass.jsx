@@ -21,7 +21,7 @@ const MyClass = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:4000/enrolls/${item._id}`, {
+        fetch(`https://musical-instrument-server.vercel.app/enrolls/${item._id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

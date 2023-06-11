@@ -21,7 +21,7 @@ const ClassCard = ({ classes }) => {
         price,
         email: user.email,
       };
-      fetch("http://localhost:4000/enrolls", {
+      fetch("https://musical-instrument-server.vercel.app/enrolls", {
         method: "POST",
         headers: {
           "content-type": "application/json",

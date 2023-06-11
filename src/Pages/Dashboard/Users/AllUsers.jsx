@@ -5,12 +5,12 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure ";
 
 const AllUsers = () => {
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:4000/users");
+    const res = await fetch("https://musical-instrument-server.vercel.app/users");
     return res.json();
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:4000/users/admin/${user._id}`, {
+    fetch(`https://musical-instrument-server.vercel.app/users/admin/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
@@ -29,7 +29,7 @@ const AllUsers = () => {
       });
   };
   const handleMakeinstructor = (user) => {
-    fetch(`http://localhost:4000/users/instructor/${user._id}`, {
+    fetch(`https://musical-instrument-server.vercel.app/users/instructor/${user._id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())

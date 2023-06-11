@@ -1,6 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {
-  FaShoppingCart,
+ 
   FaWallet,
   FaCalendarAlt,
   FaHome,
@@ -9,12 +9,11 @@ import {
   FaMusic,
 } from "react-icons/fa";
 
-import useEnroll from "../hooks/useEnroll";
 import useAdmin from "../hooks/UseAdmin";
 import useInstructor from "../hooks/UseInstructor";
 import logo from "../assets/logo1.png";
 const Dashboard = () => {
-  const [enrolls] = useEnroll();
+
   //console.log(enrolls);
   //const isAdmin = true;
   const [isAdmin] = useAdmin();
@@ -43,7 +42,7 @@ const Dashboard = () => {
               <>
                 <li className="text-3xl">
                   <NavLink className="text-2xl" to="/dashboard">
-                    Admin Home
+                    Admin Dashboard
                   </NavLink>
                 </li>
                 <li className="text-xl">
@@ -51,12 +50,6 @@ const Dashboard = () => {
                 <FaHome></FaHome> Home
               </NavLink>{" "}
             </li>
-                {/* <li className="text-xl">
-                  <NavLink to="/dashboard/addClass">
-                    {" "}
-                     Add Class
-                  </NavLink>
-                </li> */}
                 <li className="text-xl">
                   <NavLink to="/dashboard/manageClass">
                      <FaMusic></FaMusic> Manage Class
@@ -74,7 +67,7 @@ const Dashboard = () => {
              <div className=" mt-5">
              <li className="text-3xl">
                 <NavLink to="/dashboard/home">
-                   Insructor Home
+                   Insructor Dashboard
                 </NavLink>
               </li>
               <li className="text-xl">
@@ -98,34 +91,35 @@ const Dashboard = () => {
             </>
             ) : (
               <>
-                <li>
+                <div className="">
+                <li className="text-xl text-center pt-3 pb-2">
                   <NavLink to="/dashboard/home">
-                    <FaHome></FaHome> User Home
+                     User Dashboard
                   </NavLink>
                 </li>
-                <li>
+                <li className="text-lg">
               <NavLink to="/">
                 <FaHome></FaHome> Home
               </NavLink>{" "}
             </li>
-                <li>
+                
+                <li className="text-lg">
+                  <NavLink to="/dashboard/myclass">
+                    <FaMusic></FaMusic> My Selected class
+                    
+                  </NavLink>
+                </li>
+                <li className="text-lg">
                   <NavLink to="/dashboard/reservations">
                     <FaCalendarAlt></FaCalendarAlt> My enrolled classes
                   </NavLink>
                 </li>
-                <li>
+                <li className="text-lg">
                   <NavLink to="/dashboard/history">
                     <FaWallet></FaWallet> Payment History
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/dashboard/myclass">
-                    <FaShoppingCart></FaShoppingCart> My Selected class
-                    <span className="badge inl badge-secondary">
-                      +{enrolls?.length || 0}
-                    </span>
-                  </NavLink>
-                </li>
+                </div>
               </>
             )}
 

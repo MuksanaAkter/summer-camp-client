@@ -13,13 +13,14 @@ import AllUsers from "../Pages/Dashboard/Users/AllUsers";
 import AddClass from "../Pages/Dashboard/myclass/AddClass/AddClass";
 import ManageClass from "../Pages/Dashboard/ManageClass/ManageClass";
 import Payment from "../Pages/Dashboard/Payment/Payment";
+import Error from "../Pages/Error/Eror";
 
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main/> ,
-
+        errorElement:<Error></Error>,
         children: [
           {
               path: '/',
@@ -50,6 +51,7 @@ export const router = createBrowserRouter([
     {
       path: "dashboard",
       element:<Dashboard></Dashboard>  ,
+      errorElement: <Error></Error>,
       children: [
         {
             path: 'myclass',

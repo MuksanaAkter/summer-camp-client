@@ -1,20 +1,20 @@
-import { useContext } from "react";
-
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider";
-// import { updateProfile} from "firebase/auth";
 import Swal from "sweetalert2";
-// import SocialLogin from "../Shared/SocialLogin/SocialLogin";
+import { FaGoogle } from "react-icons/fa";
 
 const SignUp = () => {
 
     const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const { createUser, updateUserProfile ,googleSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
-
+    const [error, setError] = useState("");
+    const location = useLocation();
+    const from = location.state?.from?.pathname || "/";
     const onSubmit = data => {
+  
 
         createUser(data.email, data.password)
             .then(result => {
@@ -37,7 +37,7 @@ const SignUp = () => {
                                 if (data.insertedId) {
                                     reset();
                                     Swal.fire({
-                                        position: 'top-end',
+                                        position: 'center',
                                         icon: 'success',
                                         title: 'User created successfully.',
                                         showConfirmButton: false,
@@ -50,21 +50,43 @@ const SignUp = () => {
 
 
                     })
-                    .catch(error => console.log(error))
             })
+            .catch((error) => {
+                console.log(error);
+                setError(error.message);
+              });
     };
-
+    const handleGoogle = (event) => {
+        event.preventDefault();
+        googleSignIn()
+        .then(result => {
+            const loggedInUser = result.user;
+            console.log(loggedInUser);
+            const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+            fetch('http://localhost:4000/users', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(saveUser)
+            })
+                .then(res => res.json())
+                .then(() => {
+                    navigate(from, { replace: true });
+                })
+        })
+      };
      const backgroundImage = "https://media.istockphoto.com/id/155147726/photo/guitar.jpg?s=612x612&w=0&k=20&c=1DXyu8AFJL4NOqlQ4Jnac_sAM8DVJz8C8UMs9nKfy-M=";
     return (
         <>
            
             <div 
              style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize:"cover" }}
-             className=" hero  min-h-screen md:pr-20 p-5  ">
+             className=" hero md:pr-20 p-2  ">
                
                    
                     <div className="card flex-shrink-0 w-full max-w-lg shadow-2xl bg-base-100 bg-opacity-20">
-                        <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                        <form onSubmit={handleSubmit(onSubmit)} className="card-body my-0">
                         <h1 className="text-5xl font-bold text-white text-center">Sign up now!</h1>
                             <div className="form-control">
                                 <label className="label">
@@ -123,13 +145,21 @@ const SignUp = () => {
                                     <p className="text-yellow-500 font-bold text-base">Passwords do not match</p>
                                 )}
                             </div>
+                            <h5 className="text-yellow-500 font-bold my-2">{error}</h5>
                             <div className="form-control mt-6">
                                 <input className="btn bg-black text-white border-0 hover:bg-yellow-600" type="submit" value="Sign Up" />
                             </div>
-                             
+                            <p className="text-center mt-1">-----------or---------</p>
+              <button
+                onClick={handleGoogle}
+                className="btn bg-yellow-500 border-0 w-full my-2"
+              >
+                <FaGoogle className="mx-2"></FaGoogle> SignUp with Google
+              </button>
+                            <p className="text-lg text-center pt-3 pb-5 font-semibold text-white">Already have an account <Link className="text-xl text-yellow-400" to="/login">Login</Link></p>
                         </form>
-                        <p className="text-lg text-center pb-5 font-semibold text-white">Already have an account <Link className="text-xl text-yellow-400" to="/login">Login</Link></p>
-                        {/* <SocialLogin></SocialLogin> */}
+                        
+                        
                     </div>
                 
             </div>

@@ -44,14 +44,11 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             Swal.fire({
-                title: 'User Login Successful.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            });
+                  icon: 'success',
+                  title: 'Success!',
+                  text: 'LogIn Successfully Done',
+                    
+                })
             navigate(from, { replace: true });
         })
         .catch((error) => {
@@ -93,15 +90,15 @@ const Login = () => {
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
         }}
-        className="hero min-h-screen bg-slate-900"
+        className="hero bg-slate-900"
       >
         <div
           // style={{ backgroundImage: `url(${backgroundImage})`, backgroundSize:'cover' }}
-          className=" py-10 "
+          className=" py-5 "
         >
-          <div className="card w-96 shadow-2xl bg-base-100 bg-opacity-40 md:mr-80">
-            <form onSubmit={handleLogin} className="card-body">
-              <h1 className="text-5xl font-bold text-center pb-3 ">
+          <div className="card  shadow-2xl bg-base-100 bg-opacity-40 md:mr-80">
+            <form onSubmit={handleLogin} className="card-body my-1">
+              <h1 className="text-5xl font-bold text-center pb-2 ">
                 Login now!
               </h1>
               <div className="form-control">
@@ -134,10 +131,10 @@ const Login = () => {
                   <h5 className="text-red-600 font-bold my-2">{error}</h5>
                 </div>
               </div>
-              <div className="form-control mt-6 bg-black text-white rounded-xl hover:bg-cyan-800">
+              <div className="form-control mt-3 bg-black  rounded-xl hover:bg-cyan-800">
                 <input
                   disabled={false}
-                  className="border-0 w-full my-3 rounded-xl"
+                  className="border-0 text-xl font-semibold text-white w-full my-3 rounded-xl"
                   type="submit"
                   value="Login"
                 />
@@ -150,15 +147,14 @@ const Login = () => {
                   Forgot password?
                 </a>
               </label>
-              <p className="text-center mt-2">-----------or---------</p>
+              <p className="text-center mt-1">-----------or---------</p>
               <button
                 onClick={handleGoogle}
-                className="btn bg-yellow-500 border-0 w-full my-3"
+                className="btn bg-yellow-500 border-0 w-full my-2"
               >
                 <FaGoogle className="mx-2"></FaGoogle> Login with Google
               </button>
-            </form>
-            <p className="text-center pb-5">
+              <p className="text-center pb-3 pt-3">
               New Here?
               <Link
                 className="text-rose-950 font-bold hover:underline"
@@ -167,6 +163,7 @@ const Login = () => {
                 Create an account
               </Link>
             </p>
+            </form>
           </div>
         </div>
       </div>

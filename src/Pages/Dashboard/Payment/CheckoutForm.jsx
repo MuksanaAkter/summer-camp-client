@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure ";
+import './CheckoutForm.css'
 
 
-
-const CheckoutForm = ({ cart, price }) => {
+const CheckoutForm = ({ classes, price }) => {
     const stripe = useStripe();
     const elements = useElements();
     const { user } = useContext(AuthContext);
@@ -40,8 +40,8 @@ const CheckoutForm = ({ cart, price }) => {
         if (card === null) {
             return
         }
-
-        const { error } = await stripe.createPaymentMethod({
+console.log(card);
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card
         })
@@ -52,7 +52,7 @@ const CheckoutForm = ({ cart, price }) => {
         }
         else {
             setCardError('');
-            // console.log('payment method', paymentMethod)
+            console.log('payment method', paymentMethod)
         }
 
         setProcessing(true)
@@ -84,11 +84,11 @@ const CheckoutForm = ({ cart, price }) => {
                 transactionId: paymentIntent.id,
                 price,
                 date: new Date(),
-                quantity: cart.length,
-                cartItems: cart.map(item => item._id),
-                menuItems: cart.map(item => item.menuItemId),
+                quantity: classes.length,
+                classesItems: classes.map(item => item._id),
+                menuItems: classes.map(item => item.menuItemId),
                 status: 'service pending',
-                itemNames: cart.map(item => item.name)
+                itemNames: classes.map(item => item.name)
             }
             axiosSecure.post('/payments', payment)
                 .then(res => {
@@ -104,15 +104,15 @@ const CheckoutForm = ({ cart, price }) => {
 
     return (
         <>
-            <form className="" onSubmit={handleSubmit}>
-                <CardElement
+            <form className="w-full m-8" onSubmit={handleSubmit}>
+                <CardElement className="w-full"
                     options={{
                         style: {
                             base: {
-                                fontSize: '30px',
-                                color: '#1f2025',
+                                fontSize: '16px',
+                                color: '#000000',
                                 '::placeholder': {
-                                    color: '#aab7c4',
+                                    color: '#343536',
                                 },
                             },
                             invalid: {
@@ -121,7 +121,9 @@ const CheckoutForm = ({ cart, price }) => {
                         },
                     }}
                 />
-                <button className="btn btn-primary " type="submit" disabled={!stripe || !clientSecret || processing}>
+                <button className="btn btn-primary btn-sm mt-4" type="submit" 
+                disabled={!stripe || !clientSecret || processing}
+                >
                     Pay
                 </button>
             </form>

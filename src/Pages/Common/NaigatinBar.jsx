@@ -3,11 +3,10 @@ import logo from "../../assets/logo1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider";
 import { Tooltip } from "react-tooltip";
-import useEnroll from "../../hooks/useEnroll";
+
 
 const NavigationBar = () => {
   const { user, logOut } = useContext(AuthContext);
-  const [enrolls]= useEnroll();
   //console.log(enrolls);
 
   const handleLogOut = () => {
@@ -30,12 +29,15 @@ const NavigationBar = () => {
         <Link to="/classes">Classes</Link>
       </li>
     
+       
+      { user?.email ?  <>
         <li className="font-bold text-xl">
         <Link to="/dashboard">Dashboard</Link>
       </li>
-      <li className="font-bold text-xl">
-        <Link to="/music">class <span>{enrolls?.length|| 0}</span></Link>
-      </li>
+            
+        </> 
+        : <li> </li>
+       }
             
         </>       
   );

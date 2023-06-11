@@ -80,7 +80,7 @@ const AddClass = () => {
         <div style={{ backgroundImage: `url(${bg})` ,backgroundSize:"cover", height:"" }} >
             <h1 className="text-5xl font-bold my-10 py-20 text-center text-white">Add A Class</h1>
         </div>
-        <form className=" bg-yellow-700 bg-opacity-30 p-10 " onSubmit={handleSubmit(onSubmit)}>
+        <form className=" bg-blue-400 bg-opacity-30 p-10 mb-20 shadow-2xl" onSubmit={handleSubmit(onSubmit)}>
           {errors.exampleRequired && <span>This field is required</span>}
           <div className="form-control w-full mb-4">
             <label className="label">
@@ -194,7 +194,9 @@ const AddClass = () => {
                     </label>
                     <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full " />
                 </div> */}
-          <input className="btn btn-sm mt-4" type="submit" value="Add Item" />
+          <div className="flex justify-center">
+          <input className="btn bg-yellow-500 border-0 font-bold text-center flex justify-end my-5" type="submit" value="Add Class" />
+          </div>
         </form>
       </div>
     </div>

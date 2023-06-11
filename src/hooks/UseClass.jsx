@@ -1,16 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 
-const useClass = () => {
-    // const [menu, setMenu] = useState([]);
-    // const [loading, setLoading] = useState(true);
-    // useEffect(() => {
-    //     fetch('http://localhost:4000/menu')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             setMenu(data);
-    //             setLoading(false);
-    //         });
-    // }, [])
+const UseClass = () => {
 
     const {data: classes = [], isLoading: loading, refetch} = useQuery({
         queryKey: ['classes'],
@@ -23,4 +13,4 @@ const useClass = () => {
     return [ classes , loading, refetch]
 }
 
-export default useClass;
+export default UseClass;

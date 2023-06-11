@@ -5,8 +5,8 @@ import {
   FaCalendarAlt,
   FaHome,
   FaUtensils,
-  FaBook,
   FaUsers,
+  FaMusic,
 } from "react-icons/fa";
 
 import useEnroll from "../hooks/useEnroll";
@@ -20,82 +20,81 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isinstructor] = useInstructor();
   return (
-    <div className="max-w-screen-2xl mx-auto bg-black bg-opacity-40 text-white text-xl font-semibold">
+    <div className="max-w-screen-2xl mx-auto text-white text-xl font-semibold">
       <div className="drawer lg:drawer-open ">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col items-center justify-center">
           <label
             htmlFor="my-drawer-2"
-            className="btn btn-primary drawer-button lg:hidden"
+            className="btn drawer-button lg:hidden"
           >
             Open drawer
           </label>
           <Outlet></Outlet>
         </div>
-        <div className="drawer-side bg-black bg-opacity-80">
+        <div className="drawer-side lg:bg-black bg-opacity-80">
           <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
           <ul className="menu p-4 w-80">
-          <img className=" rounded-lg p-3" src={logo} alt="" />
+          <img className=" rounded-lg p-3 w-1/2 md:w-full" src={logo} alt="" />
           <h1 className="md:text-3xl text-xl text-center" style={{ fontFamily: "Lobster, cursive" }}>
             Melody<span className="text-yellow-700">MAster</span>
             </h1>
             {isAdmin ? (
               <>
-                <li className="text-2xl">
+                <li className="text-3xl">
                   <NavLink className="text-2xl" to="/dashboard">
-                    <FaHome></FaHome> Admin Home
+                    Admin Home
                   </NavLink>
                 </li>
-                <li>
+                <li className="text-xl">
+              <NavLink to="/">
+                <FaHome></FaHome> Home
+              </NavLink>{" "}
+            </li>
+                {/* <li className="text-xl">
                   <NavLink to="/dashboard/addClass">
                     {" "}
-                    <FaUtensils></FaUtensils> Add Class
+                     Add Class
                   </NavLink>
-                </li>
-                <li>
+                </li> */}
+                <li className="text-xl">
                   <NavLink to="/dashboard/manageClass">
-                    <FaWallet></FaWallet> Manage Items
+                     <FaMusic></FaMusic> Manage Class
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink to="/dashboard/history">
-                    <FaBook></FaBook> Manage Bookings
-                  </NavLink>
-                </li>
-                <li>
+               
+                <li className="text-xl">
                   <NavLink to="/dashboard/allusers">
-                    <FaUsers></FaUsers> All Users
+                    <FaUsers></FaUsers> Manage Users
                   </NavLink>
                 </li>
               </>
             ) : isinstructor ? (
               <>
-              <li className="text-xl">
+             <div className=" mt-5">
+             <li className="text-3xl">
                 <NavLink to="/dashboard/home">
-                  <FaHome></FaHome> Insructor Home
+                   Insructor Home
                 </NavLink>
               </li>
-              <li>
+              <li className="text-xl">
+              <NavLink to="/">
+                <FaHome></FaHome> Home
+              </NavLink>{" "}
+            </li>
+              <li className="text-xl text-center">
                 <NavLink to="/dashboard/addClass">
                   {" "}
                   <FaUtensils></FaUtensils> Add Class
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/history">
-                  <FaWallet></FaWallet> MY classes
+              <li className="text-xl">
+                <NavLink to="/dashboard/">
+                <FaUsers></FaUsers> MY classes
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/history">
-                  <FaBook></FaBook> Manage Bookings
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/dashboard/allusers">
-                  <FaUsers></FaUsers> All Users
-                </NavLink>
-              </li>
+             </div>
+             
             </>
             ) : (
               <>
@@ -104,6 +103,11 @@ const Dashboard = () => {
                     <FaHome></FaHome> User Home
                   </NavLink>
                 </li>
+                <li>
+              <NavLink to="/">
+                <FaHome></FaHome> Home
+              </NavLink>{" "}
+            </li>
                 <li>
                   <NavLink to="/dashboard/reservations">
                     <FaCalendarAlt></FaCalendarAlt> My enrolled classes
@@ -125,18 +129,7 @@ const Dashboard = () => {
               </>
             )}
 
-            <div className="divider"></div>
-            <li>
-              <NavLink to="/">
-                <FaHome></FaHome> Home
-              </NavLink>{" "}
-            </li>
-            <li>
-              <NavLink to="/menu"> Our Menu</NavLink>
-            </li>
-            {/* <li>
-              <NavLink to="/order/salad">Order Food</NavLink>
-            </li> */}
+            
           </ul>
         </div>
       </div>

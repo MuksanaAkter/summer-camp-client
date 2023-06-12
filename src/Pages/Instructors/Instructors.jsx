@@ -15,9 +15,9 @@ const Instructors = () => {
         });
     }, []);
     return (
-        <div className="bg-black bg-opacity-70">
+        <div className=''>
 
-            <div className=" max-w-screen-2xl mx-auto pb-10 grid grid-cols-2 gap-5 ">
+            <div className=" max-w-screen-2xl mx-auto pb-10 grid grid-cols-1 md:grid-cols-3 gap-5 ">
             {allInstructors.map((Instructors) => (
                         <InstructorsCard 
                           key={Instructors._id}

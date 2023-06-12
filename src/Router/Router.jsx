@@ -14,8 +14,8 @@ import AddClass from "../Pages/Dashboard/myclass/AddClass/AddClass";
 import ManageClass from "../Pages/Dashboard/ManageClass/ManageClass";
 import Payment from "../Pages/Dashboard/Payment/Payment";
 import Error from "../Pages/Error/Eror";
-
-
+import PrivateRoute from "./PrivateRouter";
+import AdminRoute from "./AdminRoute";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -50,7 +50,7 @@ export const router = createBrowserRouter([
     },
     {
       path: "dashboard",
-      element:<Dashboard></Dashboard>  ,
+      element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>  ,
       errorElement: <Error></Error>,
       children: [
         {
@@ -59,7 +59,7 @@ export const router = createBrowserRouter([
         },
         {
           path: 'allusers',
-          element:<AllUsers></AllUsers>
+          element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
       },
       {
         path: 'addClass',

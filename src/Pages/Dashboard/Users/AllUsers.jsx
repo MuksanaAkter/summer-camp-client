@@ -96,7 +96,7 @@ const AllUsers = () => {
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>
-                    <div className="flex gap-3">
+                    <div className="flex gap-3 text-center items-center">
                       <div>
                         {user.role === "admin" ? (
                           "Admin"

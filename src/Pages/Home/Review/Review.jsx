@@ -53,7 +53,7 @@ const Review = () => {
           <div className="avatar ">
             <div className="w-20 rounded-full mx-auto relative bottom-12 ring  ring-yellow-700 ring-offset-base-100 ring-offset-2">
               <img
-                src="https://thumbs.dreamstime.com/b/handsome-young-man-walking-street-modern-hairstyle-beautiful-guy-outdoor-outside-half-length-187272204.jpg"
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D&w=1000&q=80"
                 className=""
               />
             </div>

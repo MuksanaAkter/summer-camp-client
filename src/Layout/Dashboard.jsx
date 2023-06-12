@@ -63,7 +63,7 @@ const Dashboard = () => {
             ) : isinstructor ? (
               <>
              <div className=" mt-5">
-             <li className="text-3xl">
+             <li className="text-2xl">
                 <NavLink to="/dashboard/home">
                    Insructor Dashboard
                 </NavLink>

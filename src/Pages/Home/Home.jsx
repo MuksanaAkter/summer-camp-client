@@ -9,7 +9,7 @@ const Home = () => {
             <Instructors></Instructors>
             <Class></Class>
             <Review></Review>
-            home
+           
 
         </div>
     );

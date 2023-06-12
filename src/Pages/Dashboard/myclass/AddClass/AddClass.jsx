@@ -195,7 +195,7 @@ const AddClass = () => {
                     <input type="file" {...register("image", { required: true })} className="file-input file-input-bordered w-full " />
                 </div> */}
           <div className="flex justify-center">
-          <input className="btn bg-yellow-500 border-0 font-bold text-center flex justify-end my-5" type="submit" value="Add Class" />
+          <input className="btn bg-yellow-500 border-0 font-bold text-center flex  my-5" type="submit" value="Add Class" />
           </div>
         </form>
       </div>

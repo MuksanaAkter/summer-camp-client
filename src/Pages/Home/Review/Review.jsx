@@ -1,9 +1,10 @@
+import { Fade } from "react-awesome-reveal";
 
 const Review = () => {
   return (
-    <div className="md:w-9/12 md:mx-auto mx-9">
-      <h1 className="text-4xl md:text-5xl text-black mt-36 mb-20 text-center ">Classes Reviews
-      </h1>
+   <Fade>
+     <div className="md:w-9/12 md:mx-auto mx-9">
+    <div className="my-5 text-center text-3xl font-bold border-y-2 border-y-amber-700 text-yellow-500 py-3">---- Classes Reviews ----</div>
 
       <div className="grid md:grid-cols-3 grid-cols-1">
         <div
@@ -98,6 +99,7 @@ const Review = () => {
         </div>
       </div>
     </div>
+   </Fade>
   );
 };
 

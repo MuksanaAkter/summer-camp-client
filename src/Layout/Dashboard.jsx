@@ -1,7 +1,6 @@
 import { NavLink, Outlet } from "react-router-dom";
 import {
- 
-  FaWallet,
+
   FaCalendarAlt,
   FaHome,
   FaUtensils,
@@ -114,11 +113,7 @@ const Dashboard = () => {
                     <FaCalendarAlt></FaCalendarAlt> My enrolled classes
                   </NavLink>
                 </li>
-                <li className="text-lg">
-                  <NavLink to="/dashboard/history">
-                    <FaWallet></FaWallet> Payment History
-                  </NavLink>
-                </li>
+                
                 </div>
               </>
             )}

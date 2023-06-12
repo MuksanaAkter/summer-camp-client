@@ -16,6 +16,8 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import Error from "../Pages/Error/Eror";
 import PrivateRoute from "./PrivateRouter";
 import AdminRoute from "./AdminRoute";
+import SinglePayment from "../Pages/Dashboard/Payment/SinglePayment";
+
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -72,6 +74,11 @@ export const router = createBrowserRouter([
   {
     path: 'payment',
     element:<Payment/>
+},
+{
+  path: 'singlepayment/:id',
+  element:<SinglePayment/>,
+  loader:({params}) => fetch(`https://musical-instrument-server-muksanaakter.vercel.app/classes/${params.id}`)
 },
       ]
      }

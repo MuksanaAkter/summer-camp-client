@@ -6,13 +6,7 @@ const Home = () => {
     return (
         <div className="">
             <Banner></Banner>
-            <div>
-                Popular Instructors
-            </div>
             <Instructors></Instructors>
-            <div>
-                Popular Classes
-            </div>
             <Class></Class>
             <Review></Review>
             home

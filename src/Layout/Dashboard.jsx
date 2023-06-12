@@ -3,7 +3,6 @@ import {
 
   FaCalendarAlt,
   FaHome,
-  FaUtensils,
   FaUsers,
   FaMusic,
 } from "react-icons/fa";
@@ -77,11 +76,11 @@ const Dashboard = () => {
               <li className="text-xl text-center">
                 <NavLink to="/dashboard/addClass">
                   {" "}
-                  <FaUtensils></FaUtensils> Add Class
+                  <FaMusic></FaMusic> Add Class
                 </NavLink>
               </li>
               <li className="text-xl">
-                <NavLink to="/dashboard/">
+                <NavLink to="/dashboard/instructorClass">
                 <FaUsers></FaUsers> MY classes
                 </NavLink>
               </li>

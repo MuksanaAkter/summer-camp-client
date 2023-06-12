@@ -89,7 +89,7 @@ const AddClass = () => {
             <input
               type="text"
               placeholder="Class Name"
-              {...register("className", { required: true, maxLength: 120 })}
+              {...register("name", { required: true, maxLength: 120 })}
               className="input input-bordered w-full "
             />
           </div>
@@ -127,7 +127,7 @@ const AddClass = () => {
               type="text"
               placeholder="Instructor Name"
               value={user?.displayName}
-              {...register("instructorName", {
+              {...register("instructor", {
                 required: true,
                 maxLength: 120,
               })}
@@ -144,7 +144,7 @@ const AddClass = () => {
               type="text"
               placeholder="Instructor Email"
               value={user?.email}
-              {...register("instructorEmail", {
+              {...register("email", {
                 required: true,
                 maxLength: 120,
               })}
@@ -170,7 +170,7 @@ const AddClass = () => {
               </label>
               <input
                 type="number"
-                {...register("Price", { required: true })}
+                {...register("price", { required: true })}
                 placeholder="Type here"
                 className="input input-bordered w-full "
               />
@@ -182,7 +182,7 @@ const AddClass = () => {
             </label>
             <input
               type="number"
-              {...register("seats", { required: true })}
+              {...register("available_seats", { required: true })}
               placeholder="Type here"
               className="input input-bordered w-full "
             />
